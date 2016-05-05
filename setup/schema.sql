@@ -15,14 +15,19 @@ create table events (
   id integer auto_increment primary key,
   name varchar(100) not null,
   occurring_on date not null,
-  round_count integer default 1
+  round_count integer default 1,
+  current boolean default false
 );
+
+insert into events(name, occurring_on, round_count, current) values ('DevLoveFest Katas May 2016', '2016-05-25', 3, 1);
 
 create table participants (
   id integer auto_increment primary key,
   name varchar(150) not null,
   team_id integer not null,
-  foreign key (team_id) references teams(id)
+  event_id integer not null,
+  foreign key (team_id) references teams(id),
+  foreign key (event_id) references events(id)
 );
 
 create table pairs (
