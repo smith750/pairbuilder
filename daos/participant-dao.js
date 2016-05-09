@@ -21,7 +21,7 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                this.knex.where({ name: personName, event_id: event.id }).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'id')
+                return this.knex.where({ name: personName, event_id: event.id }).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'id')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
                         if (rows && rows.length > 0) {
@@ -38,7 +38,7 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                this.knex.where({ team_id: teamId, event_id: event.id }).select('name').from('participants')
+                return this.knex.where({ team_id: teamId, event_id: event.id }).select('name').from('participants')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
                         const participantNames = _.map(rows, (val) => val.name);
@@ -51,7 +51,7 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                this.knex.where({event_id: event.id}).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'teams.id')
+                return this.knex.where({event_id: event.id}).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'teams.id')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
                         const participants = _.map(rows, (row) => this.buildParticipantTeamRow(row));
