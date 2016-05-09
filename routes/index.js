@@ -6,8 +6,6 @@ const knex = require('../db');
 const EventDao = require('../daos/event-dao');
 const TeamDao = require('../daos/team-dao');
 const ParticipantDao = require('../daos/participant-dao');
-const _ = require('lodash');
-const Promise = require('bluebird');
 
 const eventDao = new EventDao(knex);
 const teamDao = new TeamDao(knex);

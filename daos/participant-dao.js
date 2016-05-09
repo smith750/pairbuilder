@@ -2,6 +2,7 @@
 
 const Promise = require('bluebird');
 const EventDao = require('../daos/event-dao.js');
+const _ = require('lodash');
 
 class ParticipantDao {
     constructor(knex) {
@@ -20,12 +21,12 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                knex.where({ name: personName, event_id: event.id }).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'id')
+                this.knex.where({ name: personName, event_id: event.id }).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'id')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
                         if (rows && rows.length > 0) {
                             const person = rows[0];
-                            return new Promise((resolve, reject) => resolve(buildParticipantTeamRow(person)));
+                            return new Promise((resolve, reject) => resolve(this.buildParticipantTeamRow(person)));
                         } else {
                             return new Promise((resolve, reject) => resolve({}));
                         }
@@ -37,7 +38,7 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                knex.where({ team_id: teamId, event_id: event.id }).select('name').from('participants')
+                this.knex.where({ team_id: teamId, event_id: event.id }).select('name').from('participants')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
                         const participantNames = _.map(rows, (val) => val.name);
@@ -46,15 +47,15 @@ class ParticipantDao {
             });
     }
 
-    lookupParticipants(res) {
+    lookupParticipants() {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                knex.where({event_id: event.id}).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'teams.id')
+                this.knex.where({event_id: event.id}).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'teams.id')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
-                        const participants = _.map(rows, (row) => buildParticipantTeamRow(row));
-                        return new Promise((resolve, reject) => resolve.send(participants));
+                        const participants = _.map(rows, (row) => this.buildParticipantTeamRow(row));
+                        return new Promise((resolve, reject) => resolve(participants));
                     });
             });
     }
