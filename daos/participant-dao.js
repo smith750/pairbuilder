@@ -21,9 +21,10 @@ class ParticipantDao {
         return this.eventDao.lookupCurrentEvent()
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((event) => {
-                return this.knex.where({ name: personName, event_id: event.id }).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'id')
+                return this.knex.whereRaw('participants.name = ? and event_id = ?', [personName, event.id]).select('participants.name as person_name', 'teams.name as team_name').from('participants').innerJoin('teams', 'participants.team_id', 'teams.id')
                     .catch((error) => new Promise((resolve, reject) => reject(error)))
                     .then(rows => {
+                        console.log(_.join(rows, ","));
                         if (rows && rows.length > 0) {
                             const person = rows[0];
                             return new Promise((resolve, reject) => resolve(this.buildParticipantTeamRow(person)));

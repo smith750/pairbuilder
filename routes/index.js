@@ -21,26 +21,37 @@ router.get('/teams', (req, res, next)=> {
         .then((teams) => res.send(teams));
 });
 
-router.get('/participants', (req, res, next) => {
+router.get('/participants/team/:team_id', (req, res, next) => {
     const teamId = req.params.team_id;
-    const personName = req.params.name;
 
-    if (personName) {
-        participantDao.lookupParticipantByPersonName(personName)
-            .then((particpants) => {
-                res.send(particpants);  
-            });
-    } else if (teamId) {
+    if (!teamId) {
+        res.status(400).send("Team ID is required");
+    } else {
         participantDao.lookupParticipantsByTeam(teamId)
             .then((participants) => {
                 res.send(participants);
             });
+    }
+});
+
+router.get('/participants/person_name', (req, res, next) => {
+    const personName = req.query.name;
+
+    if (!personName) {
+        res.status(400).send("Person name is required");
     } else {
-        participantDao.lookupParticipants()
-            .then((participants) => {
-                res.send(participants);
+        participantDao.lookupParticipantByPersonName(personName)
+            .then((particpants) => {
+                res.send(particpants);
             });
     }
+});
+
+router.get('/participants', (req, res, next) => {
+    participantDao.lookupParticipants()
+        .then((participants) => {
+            res.send(participants);
+        });
 });
 
 router.put('/participants', (req, res) => {
