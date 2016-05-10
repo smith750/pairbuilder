@@ -13,7 +13,7 @@ const participantDao = new ParticipantDao(knex);
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('index', { title: 'Express' });
+    res.render('index.html');
 });
 
 router.get('/teams', (req, res, next)=> {
@@ -89,6 +89,13 @@ router.put('/participants', (req, res) => {
             }
         });
 });
+
+router.get('/events/current', (req, res, next) => {
+    eventDao.lookupCurrentEvent()
+        .then((event) => {
+            res.send(event);
+        });
+})
 
 
 module.exports = router;
