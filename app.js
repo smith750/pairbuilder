@@ -5,14 +5,16 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+var http = require('http');
 
 const routes = require('./routes/index');
 
 let app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+/*app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');*/
+app.use(express.static(__dirname+'/views'));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
