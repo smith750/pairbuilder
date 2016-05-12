@@ -30,10 +30,6 @@ class SignupTitle extends React.Component {
     }
 }
 
-class SignupMain extends React.Component {
-    render() {
-        return (<div><SignupTitle/></div>);
-    }
-}
+const SignupMain = () => (<div><SignupTitle/></div>);
 
 ReactDOM.render(<SignupMain/>, document.getElementById('main'));
