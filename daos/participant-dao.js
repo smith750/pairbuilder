@@ -12,7 +12,7 @@ class ParticipantDao {
 
     buildParticipantTeamRow(row) {
         return {
-            person: row['person_name'],
+            name: row['person_name'],
             team: row['team_name']
         };
     }

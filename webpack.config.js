@@ -1,7 +1,8 @@
 var webpack = require('webpack');
 module.exports = {
     entry: {
-        signup: "./scripts/signup.jsx"
+        signup: "./scripts/signup.jsx",
+        participantList: "./scripts/participants.jsx"
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
