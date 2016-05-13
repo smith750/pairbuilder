@@ -1,29 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import {EventAwareComponent} from './event-aware.jsx';
+import {mainStyle, headerStyle} from './styles.jsx';
 
 const server = 'http://localhost:3000';
 
-class SignupTitle extends React.Component {
-    constructor() {
-        super();
-        this.state = {currentEvent: {}};
-    }
-
-    componentWillMount() {
-        axios.get(server+'/events/current')
-            .then((response) => {
-                const newState = {currentEvent: response.data};
-                this.setState(newState);
-            })
-            .catch((response) => {
-                console.error("Could not access resource, "+response);
-            })
-    }
-
+class SignupTitle extends EventAwareComponent {
     render() {
         if (Object.keys(this.state.currentEvent).length > 0) {
-            return (<div>Sign Up for {this.state.currentEvent.name}</div>)
+            return (<h3 style={headerStyle}>Sign Up for {this.state.currentEvent.name}</h3>)
         } else {
             return (<span></span>);
         }
@@ -129,6 +115,6 @@ const ErrorMessages = ({messages}) => {
   }
 };
 
-const SignupMain = () => (<div><SignupTitle/><SignupForm/></div>);
+const SignupMain = () => (<div style={mainStyle}><SignupTitle/><SignupForm/></div>);
 
 ReactDOM.render(<SignupMain/>, document.getElementById('main'));
