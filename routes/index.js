@@ -55,22 +55,28 @@ router.get('/participants', (req, res, next) => {
 });
 
 router.put('/participants', (req, res) => {
+    console.log(req);
     const teamId = req.body.team_id;
     const personName = req.body.name;
 
+    let messages = [];
     if (!teamId) {
-        res.status(400).send('team_id must not be null');
+        messages.push('Please select a team.');
     }
 
     if (!personName) {
-        res.status(400).send('person_name must not be null');
+        messages.push('Please enter a name.');
+    }
+
+    if (messages.length > 0) {
+        res.status(400).send(messages);
+        return;
     }
 
     teamDao.lookupTeam(teamId)
         .then((team) => {
-            console.log("did the team lookup");
             if (!team) {
-                res.status(400).send('team_id '+teamId+' could not be found');
+                res.status(400).send(['Team '+teamId+' could not be found']);
             } else {
                 eventDao.lookupCurrentEvent()
                     .then((event) => {
@@ -81,11 +87,12 @@ router.put('/participants', (req, res) => {
                                     .then((id) => {
                                         res.send({'id': id});
                                     });
-                                }, () => {
-                                    res.status(400).send("Participant has already signed up for the current event");
-                                }
-                            );
+                                })
+                            .catch(() => {
+                                res.status(400).send(['Participant has already signed up for the current event.']);
+                            });
                         });
+
             }
         });
 });

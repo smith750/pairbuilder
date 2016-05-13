@@ -62,8 +62,10 @@ class ParticipantDao {
     }
 
     lookupExactParticipant(name, teamId, eventId) {
-        return this.knex.where({team_id: teamId, name: name.toLowerCase(), event_id: eventId}).select('id').from('participants')
-            .catch((error) => new Promise((resolve, reject) => reject(error)))
+        return this.knex.whereRaw('team_id = ? and lcase(name) = ? and event_id = ?', [teamId, name.toLowerCase(), eventId]).select('id').from('participants')
+            .catch((error) => {
+                return new Promise((resolve, reject) => reject(error))
+            })
             .then((rows) => {
                 if (rows && rows.length > 0) {
                     return new Promise((resolve, reject) => { reject(); });
