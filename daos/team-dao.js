@@ -12,9 +12,9 @@ class TeamDao {
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then((rows) => {
                 if (rows && rows.length > 0) {
-                    new Promise((resolve, reject) => resolve(rows[0]));
+                    return new Promise((resolve, reject) => resolve(rows[0]));
                 } else {
-                    new Promise((resolve, reject) => reject("no team found"));
+                    return new Promise((resolve, reject) => reject("no team found"));
                 }
             });
     }
