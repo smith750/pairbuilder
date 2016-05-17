@@ -1,6 +1,6 @@
 const mainStyle = {
-    fontFamily: "Gill Sans, sans-serif",
-    fontSize: "12px"
+    fontFamily: "Lato, sans-serif",
+    fontSize: "14px"
 };
 
 const tableCellStyle = {
@@ -8,7 +8,8 @@ const tableCellStyle = {
 };
 
 const headerStyle = {
-    fontSize: "1.25em"
+    fontSize: "1.5em",
+    padding: "10 20 20 30"
 };
 
 module.exports = {
