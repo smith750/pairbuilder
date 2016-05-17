@@ -55,7 +55,6 @@ router.get('/participants', (req, res, next) => {
 });
 
 router.put('/participants', (req, res) => {
-    console.log(req);
     const teamId = req.body.team_id;
     const personName = req.body.name;
 
@@ -80,7 +79,6 @@ router.put('/participants', (req, res) => {
             } else {
                 eventDao.lookupCurrentEvent()
                     .then((event) => {
-                        console.log("did the event lookup");
                         participantDao.lookupExactParticipant(personName, teamId, event.id)
                             .then(() => {
                                 participantDao.insertParticipant(personName, teamId, event.id)
