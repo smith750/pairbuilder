@@ -1,0 +1,1 @@
+Creates pairs for katas
