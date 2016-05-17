@@ -3,6 +3,7 @@
 const Promise = require('bluebird');
 const EventDao = require('../daos/event-dao.js');
 const _ = require('lodash');
+const Random = require('require-js');
 
 class ParticipantDao {
     constructor(knex) {
@@ -84,6 +85,48 @@ class ParticipantDao {
             .catch((error) => new Promise((resolve, reject) => reject(error)))
             .then(id => {
                 return new Promise((resolve, reject) => resolve(id));
+            });
+    }
+
+    retrieveRawParticipants() {
+        return this.eventDao.lookupCurrentEvent()
+            .catch((error) => new Promise((resolve, reject) => reject(error)))
+            .then((event) => {
+                return this.knex.where({event_id: event.id}).select('name','team_id').from('participants')
+                    .catch((error) => new Promise((resolve, reject) => reject(error)))
+                    .then(rows => {
+                        return new Promise((resolve, reject) => resolve(rows));
+                    });
+            });
+    }
+
+    pairParticipants(seed) {
+        let rand = new Random(Random.engines.mt19937().seed(seed));
+        retrieveRawParticipants()
+            .catch((error) => new Promise((resolve, reject) => reject(error)))
+            .then((participants) => {
+                let remainingParticipants = participants.slice();
+                let generatedPairs = [];
+                const distinctTeamIds = _.uniq(_.map(participants, (participant) => participant.team_id));
+
+                while (remainingParticipants.length > 1) {
+                    let member1 = remainingParticipants[0];
+
+                    // find all of the candidates they could pair with
+                    let prospectivePartners = remainingParticipants.slice(1); // HERE JAMES!!!
+
+                    // randomly pick a partner
+                    let partnerIndex = rand.integer(1, prospectivePartners.length-1);
+                    let partner = prospectivePartners[partnerIndex];
+
+                    // push onto array of pairs
+                    generatedParis.push([member1, partner]);
+                    // remove them both from remaining participants
+                    remainingParticipants = _.filter(remainingParticipants.slice(1), (participant) => participant.name === partner.name && participant.team_id === partner.team_id);
+                };
+                if (remainingParticipants.length == 1) {
+                    // put the remaining participant on the last "pair"
+                }
             });
     }
 }
