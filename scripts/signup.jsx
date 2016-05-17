@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import {EventAwareComponent} from './event-aware.jsx';
-import {mainStyle, headerStyle} from './styles.jsx';
+import {mainStyle, headerStyle, successStyle, errorStyle} from './styles.jsx';
 
 const server = 'http://localhost:3000';
 
@@ -47,7 +47,7 @@ class SignupForm extends React.Component {
     render() {
         if (this.state.message.length > 0) {
             return (
-                <div id="success">
+                <div id="success" style={successStyle}>
                     {this.state.message}
                 </div>
             );
@@ -103,7 +103,7 @@ const ErrorMessages = ({messages}) => {
   if (messages.length > 0) {
       const messageListElements = messages.map((message, index) => <li key={index}>{message}</li>);
       return (
-          <div id="errors">
+          <div id="errors" style={errorStyle}>
               <ul>{messageListElements}</ul>
           </div>
       );
