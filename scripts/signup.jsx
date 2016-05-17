@@ -53,14 +53,11 @@ class SignupForm extends React.Component {
             );
         } else {
             return (
-                <div id="signup-form">
+                <div id="signup-form" className="pure-form pure-form-aligned">
                     <ErrorMessages messages={this.state.error_messages}/>
-                    <div><label htmlFor="name">Name:</label><input type="text" id="name" size="40"
-                                                                   onChange={this.updateName}/></div>
-                    <div><label htmlFor="team_id">Team:</label><TeamDropDown onUpdate={this.updateTeamId}/></div>
-                    <div>
-                        <button onClick={this.addParticipant}>Register!</button>
-                    </div>
+                    <div className="pure-control-group"><label htmlFor="name">Name:</label><input type="text" id="name" size="40" onChange={this.updateName}/></div>
+                    <div className="pure-control-group"><label htmlFor="team_id">Team:</label><TeamDropDown onUpdate={this.updateTeamId}/></div>
+                    <div className="pure-controls"><button className="pure-button pure-button-primary" onClick={this.addParticipant}>Register!</button></div>
                 </div>
             );
         }

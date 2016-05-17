@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06abb2f6-6d58-4a16-ad76-db84def61559" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/styles.jsx" afterPath="$PROJECT_DIR$/scripts/styles.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/signup.jsx" afterPath="$PROJECT_DIR$/scripts/signup.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/participantList.html" afterPath="$PROJECT_DIR$/views/participantList.html" />
     </list>
@@ -106,8 +105,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="125" selection-start-line="3" selection-start-column="125" selection-end-line="3" selection-end-column="125" />
+            <state relative-caret-position="102">
+              <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -136,18 +135,18 @@
       <file leaf-file-name="participantList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/participantList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="121" selection-start-line="3" selection-start-column="121" selection-end-line="3" selection-end-column="121" />
+            <state relative-caret-position="85">
+              <caret line="5" column="73" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="signup.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/signup.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+            <state relative-caret-position="289">
+              <caret line="59" column="68" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -165,7 +164,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="styles.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/styles.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -214,10 +213,10 @@
         <option value="$PROJECT_DIR$/daos/participant-dao.js" />
         <option value="$PROJECT_DIR$/scripts/event-aware.jsx" />
         <option value="$PROJECT_DIR$/scripts/participants.jsx" />
-        <option value="$PROJECT_DIR$/scripts/signup.jsx" />
+        <option value="$PROJECT_DIR$/scripts/styles.jsx" />
         <option value="$PROJECT_DIR$/views/index.html" />
         <option value="$PROJECT_DIR$/views/participantList.html" />
-        <option value="$PROJECT_DIR$/scripts/styles.jsx" />
+        <option value="$PROJECT_DIR$/scripts/signup.jsx" />
       </list>
     </option>
   </component>
@@ -841,12 +840,12 @@
       <workItem from="1462891484838" duration="3318000" />
       <workItem from="1463088966912" duration="989000" />
       <workItem from="1463164536594" duration="12213000" />
-      <workItem from="1463493971763" duration="2156000" />
+      <workItem from="1463493971763" duration="3163000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44207000" />
+    <option name="totallyTimeSpent" value="45214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1298,14 +1297,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/signup.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/env_set.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1314,26 +1305,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.html">
+    <entry file="file://$PROJECT_DIR$/scripts/styles.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="125" selection-start-line="3" selection-start-column="125" selection-end-line="3" selection-end-column="125" />
+        <state relative-caret-position="187">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/participantList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="121" selection-start-line="3" selection-start-column="121" selection-end-line="3" selection-end-column="121" />
+        <state relative-caret-position="85">
+          <caret line="5" column="73" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/styles.jsx">
+    <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="102">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/signup.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="59" column="68" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
           <folding />
         </state>
       </provider>
