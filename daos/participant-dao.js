@@ -3,7 +3,7 @@
 const Promise = require('bluebird');
 const EventDao = require('../daos/event-dao.js');
 const _ = require('lodash');
-const Random = require('require-js');
+const Random = require('random-js');
 
 class ParticipantDao {
     constructor(knex) {

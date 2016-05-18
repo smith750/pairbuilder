@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const server = 'http://localhost:3000';
+const server = location.protocol+'//'+location.host;
 
 class EventAwareComponent extends React.Component {
     constructor() {

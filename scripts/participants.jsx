@@ -4,7 +4,7 @@ import axios from 'axios';
 import {EventAwareComponent} from './event-aware.jsx';
 import {mainStyle, tableCellStyle, headerStyle} from './styles.jsx';
 
-const server = 'http://localhost:3000';
+const server = location.protocol+'//'+location.host;
 
 class ParticipantsTitle extends EventAwareComponent {
     render() {

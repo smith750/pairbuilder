@@ -4,7 +4,7 @@ import axios from 'axios';
 import {EventAwareComponent} from './event-aware.jsx';
 import {mainStyle, headerStyle, successStyle, errorStyle} from './styles.jsx';
 
-const server = 'http://localhost:3000';
+const server = location.protocol+'//'+location.host;
 
 class SignupTitle extends EventAwareComponent {
     render() {
