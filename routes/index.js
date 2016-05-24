@@ -6,6 +6,7 @@ const knex = require('../db');
 const EventDao = require('../daos/event-dao');
 const TeamDao = require('../daos/team-dao');
 const ParticipantDao = require('../daos/participant-dao');
+const Random = require('random-js');
 
 const eventDao = new EventDao(knex);
 const teamDao = new TeamDao(knex);
@@ -100,7 +101,37 @@ router.get('/events/current', (req, res, next) => {
         .then((event) => {
             res.send(event);
         });
-})
+});
+
+router.get('/pairs', (req, res, next) => {
+    const seed = Date.now();
+    let retMessage = {
+        seed: seed
+    };
+    let rand = new Random(Random.engines.mt19937().seed(seed));
+    participantDao.pairParticipants(rand, [])
+        .then((participantPairs) => {
+            retMessage.round1Pairs = participantPairs;
+            participantDao.pairParticipants(rand, [participantPairs])
+                .then((participantPairs2) => {
+                    retMessage.round2Pairs = participantPairs2;
+                    participantDao.pairParticipants(rand, [participantPairs, participantPairs2])
+                        .then((participantPairs3) => {
+                            retMessage.round3Pairs = participantPairs3;
+                            res.send(retMessage);
+                        })
+                        .catch(() => {
+                            res.status(400).send(['Error generating pairs']);
+                        });
+                })
+                .catch(() => {
+                    res.status(400).send(['Error generating pairs']);
+                });
+        })
+        .catch(() => {
+            res.status(400).send(['Error generating pairs']);
+        });
+});
 
 
 module.exports = router;
